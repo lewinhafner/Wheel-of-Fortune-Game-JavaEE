@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Lewin Hafner
+ Lewin.Hafner4@stud.bbbaden.ch
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Konva Wheel of Fortune Demo</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #f0f0f0;
+            }
+        </style>
+    </head>
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="css">
+            <h:outputStylesheet library="css" name="materialize.min.css" />
+            <h:outputScript library="js" name="materialize.min.js" />F
+        </ui:define>
+
+        <ui:define name="title">
+            <h:outputText value="WoF - Game"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body" >
+            <div class="valign-wrapper" id="game-page">
+                <div class="container">
+                    <div class="center-align">
+                        <div class="row">
+                            <div class="col s6 offset-s3">
+                                <div class="card" style="border-radius: 10px;">
+                                    <div class="card-content">
+                                        <div class="left-align">
+                                            <p:growl autoUpdate="true" />
+                                            <div class="row">
+                                                <p:growl autoUpdate="true" />
+
+                                                <b:panel>
+                                                    <h:form id="form-login">
+                                                        <p:growl autoUpdate="true" />
+                                                        <div class="row">
+                                                            <div class="col s12 input-field">
+                                                                <h:inputText id="username" value="#{loginController.username}" required="true" requiredMessage="Enter a playername!" />
+                                                                <h:outputLabel for="username" value="Choose your username" />
+                                                            </div>
+                                                            <div class="col s12 input-field">
+                                                                <h:commandButton value="Go!" styleClass="btn btn-large brown lighten-3" action="#{loginController.access()}" />
+                                                            </div>
+                                                        </div>
+                                                    </h:form>
+
+                                                    <h:outputText id="testText" />
+                                                    <h:outputText id="" />
+                                                    <h:outputText id="testText" />
+                                                        
+                                                    <div id="container"></div>
+                                                </b:panel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(document).on("ready", function () {
+                    $('#index-page').css({'height': window.innerHeight - 120 + 'px'});
+                });
+                
+                
+                document.getElementById("testText").innerHTML = 'Test works';
+            </script>
+            <script src="../resources/js/konva.min.js"></script>
+            <script src="../resources/js/wheelscript.js"></script>
+        </ui:define>
+
+
+    </ui:composition>
+
+</html>

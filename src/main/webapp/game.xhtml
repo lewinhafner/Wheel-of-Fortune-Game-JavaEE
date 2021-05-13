@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Lewin Hafner
+ Lewin.Hafner4@stud.bbbaden.ch
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <head>
+        <title>WoF - Game</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="css">
+            <h:outputStylesheet library="css" name="materialize.min.css" />
+            <h:outputScript library="js" name="materialize.min.js" />
+            <h:outputStylesheet library="css" name="input-styles.css" />
+        </ui:define>
+
+        <ui:define name="title">
+            <h:outputText escape="true" value="WoF - Game"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body" >
+            <style>
+
+                thead {
+                    position: absolute !important;
+                    top: -9999px !important;
+                    left: -9999px !important;
+                }
+
+                .table-cell{
+                    background-color: #FFFFFF;
+                    border-color: #2962FF;
+                    color: #000;
+                    text-align: center;
+                    font-size: 1em;
+                    width: 15px;
+                    height: 15px;
+                }
+            </style>
+            <div class="white lighten-3" style="height: 100%;">
+                <div class="valign-wrapper" id="game-page">
+                    <div class="container">
+                        <div class="center-align">
+                            <div class="col s6 offset-s3">
+
+
+                                <!-- game page -->
+                                
+                                            <div class="center-align">
+                                            <div class="row">
+
+                                                <!-- top section with name, score and life count -->
+                                                <h:panelGroup layout="block" style="width: 100%; height: 50px;" rendered="#{gameController.playernameChosen}">
+                                                    <div>
+                                                        <div layout="block" class="row">
+                                                            <h:outputText escape="true" value="Score: #{gameController.accountValue}" style="float: left;"/>
+                                                            <div style="float: right;">
+                                                                <h:outputText escape="true" value="Name: #{gameController.playername}"/><span>    </span>
+                                                                <h:graphicImage rendered="#{gameController.firstHeart}" style="height: 15px; width: 15px;" value="/resources/images/heart.png"/><span>  </span>
+                                                                <h:graphicImage rendered="#{gameController.secondHeart}" style="height: 15px; width: 15px;" value="/resources/images/heart.png"/><span>  </span>
+                                                                <h:graphicImage rendered="#{gameController.thirdHeart}" style="height: 15px; width: 15px;" value="/resources/images/heart.png"/><span>  </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </h:panelGroup>
+
+
+                                                <!-- category showcase panel -->  
+                                                <h:panelGroup layout="block" class="row" style="width: inherit; margin-top: 5%;" rendered="#{gameController.showData}">
+                                                    <div style="width: 70%; height: 8%; align-content: center; margin: auto;">
+                                                        <h:outputText escape="true" style="font-size: 1.5em; text-decoration: underline;" value="The selected category is: #{gameController.category}"/>
+                                                    </div>
+                                                </h:panelGroup>
+
+
+                                                <!-- gameboard panel -->  
+                                                <h:panelGroup layout="block" class="row" style="width: inherit; margin-top: 5%;" rendered="#{gameController.showData}">
+                                                    <div style="width: 50%; height: 20%; align-content: center; margin: auto;">
+
+                                                        <b:dataTable value="#{gameController.dataController.dataRows}"
+                                                                     var="datarow"
+                                                                     id="game-board-table"
+                                                                     style="background-color: #000; border-color: #000;"
+                                                                     border="true"
+                                                                     lang="en"
+                                                                     row-highlight="false"
+                                                                     save-state="false"
+                                                                     info="false"
+                                                                     searching="false"
+                                                                     striped="false"
+                                                                     paginated="false"
+
+                                                                     >
+                                                            <b:dataTableColumn label="Col 0" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col1}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 1" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col2}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 2" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col3}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 3" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col4}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 4" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col5}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 5" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col6}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 6" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col7}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 7" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col8}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 8" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col9}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 9" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col10}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 10" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col11}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 11" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col12}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 12" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col13}" />
+                                                            </b:dataTableColumn>
+
+                                                            <b:dataTableColumn label="Col 13" class="table-cell">
+                                                                <h:outputText escape="true" value="#{datarow.col14}" />
+                                                            </b:dataTableColumn>
+
+                                                        </b:dataTable>
+                                                    </div>
+                                                </h:panelGroup>
+
+
+                                                <!-- game board panel-->  
+                                                <h:panelGroup layout="block" class="row" id="wheelPlaceholderPanel" style="width: 100%; margin-top: 5%;" rendered="#{gameController.canSpin}" >
+                                                    <div style="width: 500px;" id="container"></div>   
+                                                </h:panelGroup>
+
+                                                <!-- welcome panel -->  
+                                                <h:panelGroup layout="block"  style="width: inherit; margin-top: 5%;" rendered="#{!gameController.playernameChosen}">
+                                                    <h:form id="form-login">
+                                                        <h2 class="brown-text text-lighten-3">Welcome to Wheel of Fortune!</h2>
+                                                        <div class="input-field">
+                                                            <h:inputText id="playername" style="font-size: 1.5em;" value="#{gameController.playername}" required="true" requiredMessage="Choose a playername!" />
+                                                            <h:outputLabel class="brown-text text-lighten-3" escape="true" for="playername" style="font-size: 1em;" value="Choose your playername" />
+                                                        </div>
+                                                        <div class="col s12 input-field">
+                                                            <h:commandButton value="Go!" styleClass="btn btn-large brown lighten-3" action="#{gameController.start()}" />
+                                                        </div>
+                                                    </h:form>
+                                                </h:panelGroup>
+
+
+                                                <!-- next move panel -->  
+                                                <h:panelGroup layout="block" class="row" style="width: inherit; margin-top: 5%;" rendered="#{gameController.mustDecide}">
+                                                    <div style="width: 60%; text-align: center; margin: auto; ">
+                                                        <h:form id="form-nextMove">     
+                                                            <div class="col s12 input-field">
+                                                                <h:commandButton value="Buy a vowel" action="#{gameController.wantsToBuyVocal()}" styleClass="btn btn-medium brown lighten-3"/><span>   </span>
+                                                                <h:commandButton value="Continue guessing" action="#{gameController.wantsToGuess()}" styleClass="btn btn-medium brown lighten-3"/><span>   </span>
+                                                                <h:commandButton value="Finish playing" action="#{gameController.wantsToQuitPlaying()}" styleClass="btn btn-medium brown lighten-3"/><span>   </span>
+
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                </h:panelGroup>
+
+                                                <!-- highscore entry panel -->  
+                                                <h:panelGroup layout="block" class="row" style="width: inherit; margin-top: 5%;" rendered="#{gameController.showHighscoreEntry}">
+                                                    <div style="width: 60%; text-align: center; margin: auto; ">
+                                                        <h:form id="form-highscoreOption">     
+                                                            <div class="col s12 input-field">
+                                                                <h:commandButton value="Add me to the scoreboard" action="#{gameController.addToHighscore()}" styleClass="btn btn-medium brown lighten-3"/><span>   </span>
+                                                                <h:commandButton value="Dont add me" action="#{gameController.dontAddToHighscore()}" styleClass="btn btn-medium brown lighten-3"/><span>   </span>
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                </h:panelGroup>
+
+                                                <!-- found all consonants panel -->  
+                                                <h:panelGroup layout="block" class="row" style="width: inherit; margin-top: 5%;" rendered="#{gameController.foundAllConsonants}">
+                                                    <div style="width: 60%; text-align: center; margin: auto; ">
+                                                        <h:form id="form-foundAllConsonants">     
+                                                            <div class="col s12 input-field">
+                                                                <h:commandButton value="Buy a vowel" action="#{gameController.wantsToBuyVocal()}" styleClass="btn btn-medium brown lighten-3"/><span>   </span>
+                                                                <h:commandButton value="Guess the entire word" action="#{gameController.wantsToGuessEntireWord()}" styleClass="btn btn-medium brown lighten-3"/><span>   </span>
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                </h:panelGroup>
+
+
+                                                <!-- respin or keep previous spin panel -->  
+                                                <h:panelGroup layout="block" class="row" style="width: inherit; margin-top: 5%;" rendered="#{gameController.showRespinOption}">
+                                                    <div style="width: 60%; text-align: center; margin: auto; ">
+                                                        <h:form id="form-respinOption">     
+                                                            <div class="col s12 input-field">
+                                                                <h:commandButton value="Continue guessing with #{gameController.rolled}" action="#{gameController.wantsToPlayWithSameWager()}" styleClass="btn btn-medium brown lighten-2"/><span>   </span>
+                                                                <h:commandButton value="Respin the wheel" action="#{gameController.wantsToSpin()}" styleClass="btn btn-medium brown lighten-3"/><span>   </span>
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                </h:panelGroup>
+
+                                                <!-- risk bet form -->  
+                                                <h:panelGroup layout="block" class="row" rendered="#{gameController.mustBet}">
+                                                    <div style="width: 40%; text-align: center; margin: auto; ">
+                                                        <h:form id="form-bet">
+                                                            <div class="col s12 input-field" style="border: solid 0.5px gray; border-radius: 5px; padding: 5px;">
+                                                                <h:inputText id="bet" style="width: 10%;" value="#{gameController.riskBet}" required="true" autocomplete="off" requiredMessage="Make a bet!" />
+                                                                <h:outputLabel escape="true" for="bet" style="font-size: 1em; margin-top: -4px;" value="Place a risk bet between 1 and #{gameController.accountValue}" />
+                                                            </div>
+                                                            <div class="col s12 input-field">
+                                                                <h:commandButton value="Place bet" styleClass="btn btn-large brown lighten-3" action="#{gameController.prepareQuestion()}" />
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                </h:panelGroup>
+
+                                                <!-- guess consonant panel -->  
+                                                <h:panelGroup layout="block" class="row" style="width: inherit; margin-top: 5%;" rendered="#{gameController.canGuess}">
+                                                    <div style="width: 40%; text-align: center; margin: auto; ">
+                                                        <h:form id="form-guess" >
+                                                            <div class="col s12 input-field" style="border: solid 0.5px gray; border-radius: 5px; padding: 5px;">
+                                                                <h:inputText id="guess" style="width: 5%;" value="#{gameController.playerGuess}" autocomplete="off" required="true" maxlength="1" requiredMessage="Please guess a consonant!" />
+                                                                <h:outputLabel escape="true" for="guess" style="font-size: 1em; margin-top: -4px;" value="You may guess a consonant now:" /><br />
+                                                                <h:commandButton value="guess" styleClass="btn btn-small brown lighten-3" action="#{gameController.guess()}" />
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                </h:panelGroup>
+
+                                                <!-- guess entire word panel -->  
+                                                <h:panelGroup layout="block" class="row" style="width: inherit; margin-top: 5%;" rendered="#{gameController.canGuessEntireWord}">
+                                                    <div style="width: 60%; text-align: center; margin: auto; ">
+                                                        <h:form id="form-wordGuess">     
+                                                            <div class="col s12 input-field" style="border: solid 0.5px gray; border-radius: 5px; padding: 5px;">
+                                                                <h:inputText id="bet" style="width: 50%;" value="#{gameController.entireWordGuess}" required="true" autocomplete="off" requiredMessage="Make your guess!" />
+                                                                <h:outputLabel escape="true" for="bet" style="font-size: 1em; margin-top: -4px;" value="Make your final guess:" />
+                                                            </div>
+                                                            <div class="col s12 input-field">
+                                                                <h:commandButton value="Solve it!" styleClass="btn btn-large brown lighten-3" action="#{gameController.guessEntireWord()}" />
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                </h:panelGroup>
+
+
+                                                <!-- buy vowel panel -->  
+                                                <h:panelGroup layout="block" class="row" style="width: inherit; margin-top: 5%;" rendered="#{gameController.canBuyVowel}">
+                                                    <div style="width: 40%; text-align: center; margin: auto; ">
+                                                        <h:form id="form-buyVowel" >
+                                                            <h:outputText escape="true" style="font-size: 2em;" value="Vowels available:" /><br />
+                                                            <ui:repeat value="#{gameController.vowelsAvailable}" var="vowel">
+                                                                <h:outputText escape="true" style="font-size: 1.5em; font-weight: bold" value="#{vowel}, " />
+                                                            </ui:repeat><br />
+
+                                                            <h:outputText escape="true" style="font-size: 2em;" value="each vowel costs #{gameController.vowelPrice}" /><br />
+
+                                                            <div class="col s12 input-field" style="border: solid 0.5px gray; border-radius: 5px; padding: 5px; margin-top: 10%;">
+                                                                <h:inputText id="buy" style="width: 5%;" value="#{gameController.vowelToBuy}" autocomplete="off" required="true" maxlength="1" requiredMessage="Please choose a vowel to buy!" />
+                                                                <h:outputLabel escape="true" for="buy" style="font-size: 1em; margin-top: -4px;" value="You may buy one of the vowels above:" /><br />
+                                                                <h:commandButton value="buy " styleClass="btn btn-small brown lighten-3" action="#{gameController.buyVowel()}" />
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                </h:panelGroup>
+
+                                                <!-- questionnaire form -->  
+                                                <h:panelGroup layout="block" class="row" rendered="#{gameController.mustAnswer}">
+                                                    <div style="width: 40%; text-align: center; margin: auto; ">
+                                                        <h:form id="form-questionnaire">
+                                                            <div class="col s12 input-field">
+                                                                <h:outputText escape="true" value="#{gameController.currentQuestion.question}" /><br />
+                                                                <h:commandButton value="#{gameController.answerOne}" styleClass="btn btn-large brown lighten-3" action="#{gameController.answerQuestion()}">
+                                                                    <f:param name="answer" value="#{gameController.answerOne}" />
+                                                                </h:commandButton><span>     </span>
+                                                                <h:commandButton value="#{gameController.answerTwo}" styleClass="btn btn-large brown lighten-3" action="#{gameController.answerQuestion()}">
+                                                                    <f:param name="answer" value="#{gameController.answerTwo}" />
+                                                                </h:commandButton>    
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                </h:panelGroup>
+
+
+                                                <!-- play again or leave panel -->  
+                                                <h:panelGroup layout="block" class="row" style="width: inherit; margin-top: 5%;" rendered="#{gameController.gameover}">
+                                                    <div style="width: 60%; text-align: center; margin: auto; ">
+                                                        <h:form id="form-restart">     
+                                                            <div class="col s12 input-field">
+                                                                <h:commandButton value="Play again" action="#{gameController.start()}" styleClass="btn btn-medium brown lighten-3"/><span>   </span>
+                                                                <h:commandButton value="Leave" action="#{gameController.redirectToHomeScreen()}" styleClass="btn btn-medium brown lighten-3"/><span>   </span>
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                </h:panelGroup>
+
+
+                                                <b:button style="display: none;" onclick="alert('#{gameController.modalTitle}', '#{gameController.modalText}', '#{gameController.modalIcon}'); return false;" id="showModalBtn" value="show message modal"/>
+
+
+                                                <!-- roll field hidden -->  
+                                                <h:form id="rolledForm" style="display: none;" >
+                                                    <h:inputHidden id="rolledField" value="#{gameController.rolled}" />
+                                                    <h:commandButton value="submit" id="submitRolled" action="#{gameController.roll()}" />
+                                                </h:form>
+                                            </div>
+                                        </div>                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(document).on("ready", function () {
+                    $('#game-page').css({'height': window.innerHeight - 120 + 'px'});
+                });
+                function alert(title, text, icon) {
+                    Swal.fire({
+                        title: title,
+                        text: text,
+                        icon: icon,
+                        confirmButtonText: 'OK'
+                    });
+                }
+                $("td:contains(' ')").css({'background-color': '#C5A583'});
+                $("td:contains('.')").css({'background-color': '#bcaaa4'});
+                $("td:contains('.')").text('');
+
+                $(document).ready(function () {
+                    if ($('#wheelPlaceholderPanel').is(':visible')) {
+                        var width = $('#wheelPlaceholderPanel.row').width();
+                        var paddingleft = (width / 2) - 250;
+                        $('#container').css({'padding-left': paddingleft});
+                    }
+                });
+
+                window.location.hash = "no-back-button";
+                window.location.hash = "Again-No-back-button"; // chrome does not insert first hash into history
+                window.onhashchange = function () {
+                    window.location.hash = "no-back-button";
+                };
+            </script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+            <script type="text/javascript" src="resources/js/konva.min.js"></script>
+            <script type="text/javascript" src="resources/js/wheelscript.js"></script>
+        </ui:define>
+    </ui:composition>
+</html>

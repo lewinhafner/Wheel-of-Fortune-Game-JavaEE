@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ScoreCreateDlg" widgetVar="ScoreCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateScoreTitle}">
+            <h:form id="ScoreCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{scoreController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateScoreLabel_rank}" for="rank" />
+                        <p:inputText id="rank" value="#{scoreController.selected.rank}" title="#{bundle.CreateScoreTitle_rank}" required="true" requiredMessage="#{bundle.CreateScoreRequiredMessage_rank}"/>
+                        <p:outputLabel value="#{bundle.CreateScoreLabel_username}" for="username" />
+                        <p:inputText id="username" value="#{scoreController.selected.username}" title="#{bundle.CreateScoreTitle_username}" required="true" requiredMessage="#{bundle.CreateScoreRequiredMessage_username}"/>
+                        <p:outputLabel value="#{bundle.CreateScoreLabel_playedOn}" for="playedOn" />
+                        <p:calendar id="playedOn" pattern="MM/dd/yyyy HH:mm:ss" value="#{scoreController.selected.playedOn}" title="#{bundle.EditScoreTitle_playedOn}" required="true" requiredMessage="#{bundle.EditScoreRequiredMessage_playedOn}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateScoreLabel_moneyAmount}" for="moneyAmount" />
+                        <p:inputText id="moneyAmount" value="#{scoreController.selected.moneyAmount}" title="#{bundle.CreateScoreTitle_moneyAmount}" required="true" requiredMessage="#{bundle.CreateScoreRequiredMessage_moneyAmount}"/>
+                        <p:outputLabel value="#{bundle.CreateScoreLabel_roundsAmount}" for="roundsAmount" />
+                        <p:inputText id="roundsAmount" value="#{scoreController.selected.roundsAmount}" title="#{bundle.CreateScoreTitle_roundsAmount}" required="true" requiredMessage="#{bundle.CreateScoreRequiredMessage_roundsAmount}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{scoreController.create}" value="#{bundle.Save}" update="display,:ScoreListForm:datalist,:growl" oncomplete="handleSubmit(args,'ScoreCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ScoreCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

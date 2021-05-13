@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>filter.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>/secured/*</url-pattern>
+    </filter-mapping>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <context-param>
+        <param-name>BootsFaces_THEME</param-name>
+        <param-value>cerulean</param-value>
+    </context-param>
+    <!-- The BootsFaces_USETHEME context-param controls the loading of the bootstrap-theme.css -->
+    <!-- The default is false, when set to true the bootstrap-theme.css will be loaded -->
+    <context-param>
+        <param-name>BootsFaces_USETHEME</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <cookie-config>                                                                                
+            <http-only>true</http-only>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.xhtml</welcome-file>
+    </welcome-file-list>
+    <error-page>                                                     
+        <error-code>404</error-code>
+        <location>/WEB-INF/error/404.xhtml</location>
+    </error-page>
+    <error-page>
+        <location>/WEB-INF/error/error.xhtml</location>
+    </error-page>
+    <context-param>
+        <param-name>
+            javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL
+        </param-name>
+        <param-value>true</param-value>
+    </context-param></web-app>

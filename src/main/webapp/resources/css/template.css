@@ -1,0 +1,119 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24.03.2021, 18:10:26
+    Author     : Lewin Hafner
+*/
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    background: #FFFFFF !important;
+}
+
+.cont {
+    min-width: 100%;
+    width: 100%;
+    background: transparent;
+    margin: 0;
+}
+
+.nav {
+    height: 58px;
+    margin-bottom: 25px;
+    min-width: 100%;
+    width: 100%;
+    background: #C5A583;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.brand {
+    margin: 0px 35px;
+    color: white !important;
+    cursor: pointer;
+}
+.brand:hover {
+    color: #000000 !important;
+}
+
+.link {
+    position: fixed;
+    right: 0;
+    color: #FFFFFF !important;
+    margin: 0 35px;
+    cursor: pointer;
+}
+.link:hover {
+    color: #000000 !important;
+}
+
+.nav-container {
+    min-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #C5A583;
+}
+
+.nav-items {
+    height: min-content;
+}
+
+.brand {
+    text-decoration: none;
+}
+.brand:hover {
+    text-decoration: none;
+}
+
+.main {
+    width: 100%;
+    min-height: 75vh;
+    padding-bottom: 50px;
+    background: #FFFFFF!important;
+}
+
+.main-content {
+    background: #FFFFFF!important;
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #C5A583!important;
+}
+
+.copy-right {
+    
+}
+
+.copy-right p {
+    width: fit-content;
+}

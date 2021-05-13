@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="QuestionEditDlg" widgetVar="QuestionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditQuestionTitle}">
+            <h:form id="QuestionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{questionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditQuestionLabel_questionID}" for="questionID" />
+                        <p:inputText id="questionID" value="#{questionController.selected.questionID}" title="#{bundle.EditQuestionTitle_questionID}" required="true" requiredMessage="#{bundle.EditQuestionRequiredMessage_questionID}"/>
+                        <p:outputLabel value="#{bundle.EditQuestionLabel_question}" for="question" />
+                        <p:inputText id="question" value="#{questionController.selected.question}" title="#{bundle.EditQuestionTitle_question}" required="true" requiredMessage="#{bundle.EditQuestionRequiredMessage_question}"/>
+                        <p:outputLabel value="#{bundle.EditQuestionLabel_rightAnswer}" for="rightAnswer" />
+                        <p:inputText id="rightAnswer" value="#{questionController.selected.rightAnswer}" title="#{bundle.EditQuestionTitle_rightAnswer}" required="true" requiredMessage="#{bundle.EditQuestionRequiredMessage_rightAnswer}"/>
+                        <p:outputLabel value="#{bundle.EditQuestionLabel_wrongAnswer}" for="wrongAnswer" />
+                        <p:inputText id="wrongAnswer" value="#{questionController.selected.wrongAnswer}" title="#{bundle.EditQuestionTitle_wrongAnswer}" required="true" requiredMessage="#{bundle.EditQuestionRequiredMessage_wrongAnswer}"/>
+                        <p:outputLabel value="#{bundle.EditQuestionLabel_categoryID}" for="categoryID" />
+                        <p:selectOneMenu id="categoryID" value="#{questionController.selected.categoryID}" required="true" requiredMessage="#{bundle.EditQuestionRequiredMessage_categoryID}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{categoryController.itemsAvailableSelectOne}"
+                                           var="categoryIDItem"
+                                           itemValue="#{categoryIDItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{questionController.update}" value="#{bundle.Save}" update="display,:QuestionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'QuestionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="QuestionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

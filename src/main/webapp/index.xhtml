@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Lewin Hafner
+ Lewin.Hafner4@stud.bbbaden.ch
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <head>
+        <title>WoF - Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <ui:composition template="/template.xhtml">
+
+        <f:metadata>
+            <f:viewAction action="#{loginController.onload}" />
+        </f:metadata>
+
+        <ui:define name="css">
+            <h:outputStylesheet library="css" name="materialize.min.css" />
+            <h:outputScript library="js" name="materialize.min.js" />
+            <h:outputStylesheet library="css" name="welcomepage.css" />
+            <ui:insert name="body"/>
+        </ui:define>
+
+        <ui:define name="title">
+            <h:outputText value="WoF - Home"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body" >
+            <div class="main-content">
+                
+                <p:growl autoUpdate="true" />
+                <b:panel class="main-menu">
+                    <h:form>
+                        <div class="title">
+                            <h2>Main Menu</h2> 
+                        </div>
+                        <div class="row">
+                            <b:commandLink class="box" outcome="/game" value="Play WoF" />
+                            <b:commandLink class="box" outcome="/highscore" value="View Highscores" />
+                        </div>
+                        <div class="row">
+                            <b:commandLink class="box" outcome="/login" value="Admin Panel" />
+                            <b:commandLink class="box" outcome="/index" onclick="close_window();return false;" value="Exit" />
+                        </div>
+                    </h:form>
+                </b:panel>
+                
+            </div>
+            <script>
+                function close_window() {
+                    window.close();
+                }
+
+                $(document).on("ready", function () {
+                    $('#index-page').css({'height': window.innerHeight - 120 + 'px'});
+                });
+            </script>
+        </ui:define>
+    </ui:composition>
+</html>

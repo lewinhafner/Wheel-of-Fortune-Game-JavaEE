@@ -1,0 +1,75 @@
+/*
+ Lewin Hafner
+ Lewin.Hafner4@stud.bbbaden.ch
+*/
+/* 
+    Created on : 29.01.2020, 09:27:43
+    Author     : Lewin Hafner
+*/
+
+.ui-paginator-page.ui-state-default.ui-corner-all.ui-state-active{
+    border:solid 2px grey;
+}
+.ui-paginator-page.ui-state-default.ui-corner-all{
+    border:none;
+    border-radius: 2px;
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    color:#fff;
+    background-color: #26a69a;
+    text-align: center;
+    letter-spacing: .5px;
+    transition:  .2s ease-out;
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 
+        3px 1px -2px rgba(0,0,0,0.2);
+}
+.ui-paginator-page.ui-state-default.ui-state-hover{
+    /*Hover style*/
+}
+.ui-paginator-prev.ui-state-default.ui-corner-all:before{
+    content: "Prev";
+}
+.ui-paginator-prev.ui-state-default.ui-corner-all.ui-state-disabled:before{
+    content: "Prev";
+}
+.ui-paginator-last.ui-state-default.ui-corner-all.ui-state-disabled:before{
+    content: "Last";
+}
+.ui-paginator-last.ui-state-default.ui-corner-all:before{
+    content: "Last";
+}
+.ui-paginator-first.ui-state-default.ui-corner-all.ui-state-disabled:before{
+    content: "First";
+}
+.ui-paginator-first.ui-state-default.ui-corner-all:before{
+    content: "First";
+}
+.ui-paginator-next.ui-state-default.ui-corner-all.ui-state-disabled:before{
+    content: "Next";
+}
+.ui-paginator-next.ui-state-default.ui-corner-all:before{
+    content: "Next";
+}
+.ui-icon.ui-icon-seek-first{
+    display: none;
+}
+.ui-icon.ui-icon-seek-end{
+    display: none;
+}
+.ui-icon.ui-icon-seek-prev{
+    display: none;
+}
+.ui-icon.ui-icon-seek-next{
+    display: none;
+}
+
+/*Table without border*/
+.ui-datatable thead th, .ui-datatable tbody td,
+.ui-datatable tfoot td, .ui-datatable tfoot th{
+    border-width: 0px;
+}

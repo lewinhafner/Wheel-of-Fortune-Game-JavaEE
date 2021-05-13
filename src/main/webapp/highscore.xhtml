@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Lewin Hafner
+ Lewin.Hafner4@stud.bbbaden.ch
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+    <head>
+        <title>WoF - Highscore</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="css">
+            <h:outputStylesheet library="css" name="materialize.min.css" />
+            <h:outputStylesheet library="css" name="datatable-styles.css" />
+        </ui:define>
+
+        <ui:define name="title">
+            <h:outputText value="Highscore"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+
+            <h2 style="text-align: center;">Highscore</h2>
+
+            <div style="width: 50%; align-content: center;   margin: auto;">
+                <b:dataTable value="#{scoreController.topTen}"
+                             var="score"
+                             border="false"
+                             lang="en"
+                             row-highlight="true"
+                             save-state="false"
+                             info="false"
+                             searching="false"
+                             striped="true"
+                             paginated="false"
+
+                             >
+                    <b:dataTableColumn label="Rank">
+                        <h:outputText value="#{score.rank}" />
+                    </b:dataTableColumn>
+
+                    <b:dataTableColumn label="Player">
+                        <h:outputText value="#{score.username}" />
+                    </b:dataTableColumn>
+
+                    <b:dataTableColumn label="Played on">
+                        <h:outputText value="#{score.playedOn}">
+                            <f:convertDateTime type="time" timeZone="CET" pattern="dd.MM.yyyy HH:mm" />
+                        </h:outputText>
+                    </b:dataTableColumn>
+                    
+                    <b:dataTableColumn label="Won">
+                        <h:outputText value="#{score.moneyAmount}" />
+                    </b:dataTableColumn>
+
+                    <b:dataTableColumn label="Rounds">
+                        <h:outputText value="#{score.roundsAmount}" />
+                    </b:dataTableColumn>
+
+                </b:dataTable>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
